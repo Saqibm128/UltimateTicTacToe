@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ultimatetictactoe;
+package swingApp;
+
+import Model.NormalBoard;
+import Model.Winnable;
 
 /**
  *
  * @author saqib
  */
-public class JNormalBoard extends NormalBoard{
+public class JNormalBoard extends NormalBoard {
     public JNormalBoard(int num)
     {
         super(num);
@@ -22,7 +25,7 @@ public class JNormalBoard extends NormalBoard{
                 for(int row=0; row<num; row++)
                     for(int col=0; col<num; col++)
                     {
-                        Winnable temp=this.access(row, col);
+                        Winnable temp = this.access(row, col);
                         ((JPoint)temp).turn(true);
                     }
                 }

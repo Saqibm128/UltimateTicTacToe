@@ -4,16 +4,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ultimatetictactoe;
+package swingApp;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import Model.Point;
 
 /**
  *
  * @author saqib
  */
-public class JPoint extends Point{
+public class JPoint extends Point {
     private JButton pointButton;
     private boolean isTurn=true;
     private static boolean isX=true;

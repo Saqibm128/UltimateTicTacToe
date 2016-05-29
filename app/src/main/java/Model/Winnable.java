@@ -3,49 +3,61 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ultimatetictactoe;
+package Model;
 
 /**
  * class is abstract so that it can never be instantiated alone
  * @author saqib
  */
 public class Winnable {
-    private int number;
-    private Winnable[][] cells;
+    private int number;//How big this winnable should be
+    private Winnable[][] cells;//holds subWinnable
+
+    /**
+     * default constructor for Winnable
+     * @param num the size of Winnable
+     */
     public Winnable(int num) //default constructor for winnable
     {
-        number=num;
-        cells= new Winnable[num][num];
+        number = num;
+        cells = new Winnable[num][num];
     }
-    public char winner() // returns x or o for winner or z if there is none
+
+    /**
+     * Returns winner of this current Winnable
+     * Uses default algorithm for whether it is won or not
+     *  specifically, diagonals, across, or up and down
+     * @return x or o for winner or z if there is none
+     */
+    public char winner()
     {
-       for(int row=0; row<number; row++) //checks rows to see if possible winner
+       for (int row = 0; row < number; row ++) //checks rows to see if possible winner
        {
-           char possible=cells[row][0].winner();
-           boolean isWinner=true;//will turn false if one row fails test
-           for(int col=0; col<number; col++)
+           char possible = cells[row][0].winner();
+           boolean isWinner = true;//will turn false if one row fails test
+           for (int col = 0; col < number; col ++)
            {
-               if (possible=='z' || possible!=cells[row][col].winner())
+               if (possible == 'z' || possible != cells[row][col].winner())
                    isWinner=false;
            }
-           if(isWinner)
+           if (isWinner)
                return possible;
        }
        
-       for(int col=0; col<number; col++) //checks cols to see if possible winner
+       for(int col = 0; col < number; col ++) //checks cols to see if possible winner
        {
-           char possible=cells[col][0].winner();
-           boolean isWinner=true;//will turn false if one cols fails test
-           for(int row=0; row<number; row++)
+           char possible = cells[col][0].winner();
+           boolean isWinner = true;//will turn false if one cols fails test
+           for(int row = 0; row < number; row ++)
            {
-               if (possible=='z' || possible!=cells[row][col].winner())
-                   isWinner=false;
+               if (possible == 'z' || possible != cells[row][col].winner())
+                   isWinner = false;
            }
-           if(isWinner)
+           if (isWinner)
                return possible;
        }
-       char possible=cells[0][0].winner();
-       boolean isWinner=true;
+       char possible = cells[0][0].winner();
+       boolean isWinner = true;
        for (int row=0; row<number; row++)
        {
            if (possible=='z' || possible!= cells[row][row].winner())
@@ -70,17 +82,13 @@ public class Winnable {
                 
        return 'z';      
     }
+
+    /**
+     * Checks if Winnable is finished
+     * @return true if no moves are possible
+     */
     public boolean isFinished() // to ensure that winnable object can still be used
     {
-        boolean temp=false;
-        for(int row=0; row<cells.length; row++)
-            for(int col=0; col<cells[row].length; col++)
-            {
-                if (cells[row][col].winner()=='z')
-                    temp=true;
-            }
-        if(temp==false)
-            return true;
         return winner()!='z';
     }
     
